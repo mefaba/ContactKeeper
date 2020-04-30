@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
-import uuid from "uuid";
-import contactContext from "./contactContext";
+import {v4 as uuidv4} from "uuid";
+import ContactContext from "./contactContext";
+import ContactReducer from "./contactReducer";
 
 import {
 	ADD_CONTACT,
@@ -11,6 +12,7 @@ import {
 	FILTER_CONTACTS,
 	CLEAR_FILTER,
 } from "./../types";
+
 
 const ContactState = (props) => {
     const initialState = {
@@ -23,21 +25,21 @@ const ContactState = (props) => {
                 type: "professional"
             },
             {
-                id:1,
+                id:2,
                 name: 'Murat Aydın',
                 email: 'murat@gmail.com',
                 phone: '222-222-222',
                 type: "personal"
             },
             {
-                id:1,
+                id:3,
                 name: 'Aytugan Aydın',
                 email: 'aytugan@gmail.com',
                 phone: '111-111-111',
                 type: "professional"
             },
             {
-                id:1,
+                id:4,
                 name: 'Erdem Aydın',
                 email: 'erdem@gmail.com',
                 phone: '333-333-333',
@@ -45,13 +47,18 @@ const ContactState = (props) => {
             }
         ]
     }
-
-    const [state, dispatch] = useReducer(contactReducer, initialState)
+    /* const contactReducer = () =>{
+        return ""
+    } */
+    const [state, dispatch] = useReducer(ContactReducer, initialState)
 
 
 
     //Add Contact
-
+    const addContact = (contact) => {
+        contact.id = uuidv4()
+        dispatch({ type: ADD_CONTACT, payload: contact})
+    }
     //Delete Contact
 
     //Set Current Contacct
@@ -65,13 +72,14 @@ const ContactState = (props) => {
     //Clear Filter
 
     return(
-        <contactContext.Provider
+        <ContactContext.Provider
             value={{
-                contacts: state.contacts
+                contacts: state.contacts,
+                addContact
             }}
         >
             {props.children}
-        </contactContext.Provider>
+        </ContactContext.Provider>
     )
 
 };
