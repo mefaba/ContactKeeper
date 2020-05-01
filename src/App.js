@@ -8,15 +8,23 @@ import ContactState from './context/contact/contactState';
 import AuthState from './context/auth/AuthState';
 import RegisterUnit from './components/auth/RegisterUnit';
 import LoginUnit from './components/auth/LoginUnit';
+import AlertState from './context/alert/AlertState';
+import AlertUnit from './components/layout/AlertUnit';
+import setAuthToken from './utils/setAuthToken';
 
+if(localStorage.token) {
+  setAuthToken(localStorage.token)
+}
 
 function App() {
   return (
     <AuthState>
       <ContactState>
+      <AlertState>
       <>
         <Navbar/>
         <div className="container">
+          <AlertUnit/>
           <Switch>
             <Route exact path="/" component={HomePage}/>
             <Route exact path="/about" component={AboutPage}/>
@@ -25,6 +33,7 @@ function App() {
           </Switch>
         </div>
       </>
+      </AlertState>
       </ContactState>
     </AuthState>
   );
