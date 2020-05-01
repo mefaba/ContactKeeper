@@ -1,6 +1,7 @@
 import React from 'react'
 import ContactList from '../contacts/ContactList'
 import ContactForm from '../../context/contact/ContactForm'
+import ContactFilter from '../contacts/ContactFilter'
 
 const HomePage = () => {
     return (
@@ -9,6 +10,7 @@ const HomePage = () => {
                 <ContactForm/>
             </div>
             <div>
+                <ContactFilter/>
                 <ContactList/>
             </div>
         </div>
