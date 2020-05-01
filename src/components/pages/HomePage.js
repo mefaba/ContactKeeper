@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import ContactList from '../contacts/ContactList'
-import ContactForm from '../../context/contact/ContactForm'
+import ContactForm from '../contacts/ContactForm'
 import ContactFilter from '../contacts/ContactFilter'
 import AuthContext from '../../context/auth/AuthContext'
 

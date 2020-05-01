@@ -1,20 +1,25 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/AuthContext";
+import ContactContext from "../../context/contact/contactContext";
 
 const Navbar = ({ title = "Contact Keeper", icon = "fas fa-id-card-alt" }) => {
     const contextData = useContext(AuthContext)
     const { isAuthenticated, logout, user} = contextData
 
+    const contactContextData = useContext(ContactContext)
+    const {clearContacts} = contactContextData
+
     const handleLogout = () => {
         logout()
+        clearContacts()
     }
 
     const authLinks = (
             <>
                 <li>Hello { user && user.name}</li>
                 <li>
-                    <a onClick={handleLogout} href="login">
+                    <a onClick={handleLogout} href="#!">
                         <i className="fas fa-sign-out-alt"></i> <span className="hide-sm">Logout</span>
                     </a>
                 </li>
