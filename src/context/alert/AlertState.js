@@ -10,9 +10,7 @@ import {
 
 
 const AlertState = (props) => {
-    const initialState = [{
-
-    }]
+    const initialState = []
 
     const [state, dispatch] = useReducer(AlertReducer, initialState)
 
