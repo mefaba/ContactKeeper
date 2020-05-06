@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/AuthContext";
 import ContactContext from "../../context/contact/contactContext";
 
 const Navbar = ({ title = "Contact Keeper", icon = "fas fa-id-card-alt" }) => {
     const contextData = useContext(AuthContext)
-    const { isAuthenticated, logout, user} = contextData
+    const { isAuthenticated, logout, user, loadUser} = contextData
+
+    useEffect(() => {
+        loadUser()
+        // eslint-disable-next-line
+      }, []);
 
     const contactContextData = useContext(ContactContext)
     const {clearContacts} = contactContextData
