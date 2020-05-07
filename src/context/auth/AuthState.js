@@ -15,6 +15,7 @@ import {
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 
+const host = process.env.REACT_APP_herokuserverlink
 
 const AuthState = (props) => {
     const initialState = {
@@ -34,7 +35,7 @@ const AuthState = (props) => {
         setAuthToken(localStorage.token);
     
         try {
-          const res = await axios.get('/api/auth');
+          const res = await axios.get(`${host}/api/auth`);
     
           dispatch({
             type: USER_LOADED,
@@ -48,7 +49,7 @@ const AuthState = (props) => {
     //REGISTER USER
     const register = async(formData) => {
         try {
-            const res = await axios.post('/api/users', formData)    
+            const res = await axios.post(`${host}/api/users`, formData)    
             
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -66,8 +67,8 @@ const AuthState = (props) => {
     const login = async(formData) => {
 
         try {
-            const res = await axios.post('/api/auth', formData)    
-            
+            const res = await axios.post(`${host}/api/auth`, formData)    
+            console.log("success")
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data //res.data will be the token from backend

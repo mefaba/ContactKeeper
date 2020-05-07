@@ -16,7 +16,7 @@ import {
     CLEAR_CONTACTS
 } from "./../types";
 
-
+const host = process.env.REACT_APP_herokuserverlink
 
 const ContactState = (props) => {
     const initialState = {
@@ -33,7 +33,7 @@ const ContactState = (props) => {
     //Get Contacts from API and Backend
     const getContacts = async () => {
         try {
-            const res = await axios.get('/api/contacts')
+            const res = await axios.get(`${host}/api/contacts`)
             dispatch({ type: GET_CONTACTS, payload: res.data})
         } catch (err) {
             dispatch({ type: CONTACT_ERROR, payload: err.response.msg})
@@ -42,7 +42,7 @@ const ContactState = (props) => {
     //Add Contact
     const addContact = async (contact) => {
         try {
-            const res = await axios.post('/api/contacts', contact)
+            const res = await axios.post(`${host}/api/contacts`, contact)
             dispatch({ type: ADD_CONTACT, payload: res.data})
         } catch (err) {
             dispatch({ type: CONTACT_ERROR, payload: err.response.msg})
@@ -51,7 +51,7 @@ const ContactState = (props) => {
     //Delete Contact
     const deleteContact = async(id) =>{
         try {
-            await axios.delete(`/api/contacts/${id}`)
+            await axios.delete(`${host}/api/contacts/${id}`)
             dispatch({ type: DELETE_CONTACT, payload: id})
         } catch (err) {
             dispatch({ type: CONTACT_ERROR, payload: err.response.msg})
@@ -60,7 +60,7 @@ const ContactState = (props) => {
     //Update Contact
     const updateContact = async (contact) =>{
         try {
-            const res = await axios.put(`/api/contacts/${contact._id}`, contact)
+            const res = await axios.put(`${host}/api/contacts/${contact._id}`, contact)
             dispatch({ type: UPDATE_CONTACT, payload: res.data})
         } catch (err) {
             dispatch({ type: CONTACT_ERROR, payload: err.response.msg})
