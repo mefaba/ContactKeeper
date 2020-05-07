@@ -12,7 +12,7 @@ dotenv.config();
 
 
 /* DATABASE CONNECT */
-const DB = process.env.mongoDB_URI
+const DB = process.env.MONGO_URI
 mongoose.connect(DB,{ useNewUrlParser: true,useUnifiedTopology: true, useCreateIndex: true })
 .then(()=>console.log("Database connected succesfully"))
 .catch(err=>console.log(err))
