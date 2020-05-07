@@ -35,7 +35,7 @@ const AuthState = (props) => {
         setAuthToken(localStorage.token);
     
         try {
-          const res = await axios.get(`${host}/api/auth`);
+          const res = await axios.get(`https://contact-keeper-server.herokuapp.com/api/auth`);
     
           dispatch({
             type: USER_LOADED,
@@ -49,7 +49,7 @@ const AuthState = (props) => {
     //REGISTER USER
     const register = async(formData) => {
         try {
-            const res = await axios.post(`${host}/api/users`, formData)    
+            const res = await axios.post(`https://contact-keeper-server.herokuapp.com/api/users`, formData)    
             
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -67,7 +67,7 @@ const AuthState = (props) => {
     const login = async(formData) => {
 
         try {
-            const res = await axios.post(`${host}/api/auth`, formData)    
+            const res = await axios.post(`https://contact-keeper-server.herokuapp.com/api/auth`, formData)    
             console.log("success")
             dispatch({
                 type: LOGIN_SUCCESS,
